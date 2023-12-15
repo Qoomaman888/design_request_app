@@ -69,8 +69,8 @@ class ConfirmationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filteredKeys =
-    answers.keys.where((key) => answers[key] == 'Y').toList();
+    final filteredKeys = answers.keys.where((key) => answers[key] == 'Y')
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -94,37 +94,53 @@ class ConfirmationPage extends StatelessWidget {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: companyController,
-              decoration: InputDecoration(
-                labelText: '会社名',
-                border: OutlineInputBorder(), // 枠線を追加
-              ),
+          // 追加: 入力項目を囲むコンテナ
+          Container(
+            margin: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              color: Color(0xFFEAFAEA), // 指定された背景色に変更
+              border: Border.all(color: Colors.grey), // 枠線を指定
+              borderRadius: BorderRadius.circular(8.0), // 角丸設定
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              controller: nameController,
-              decoration: InputDecoration(labelText: '担当名'),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: dueDateController,
-                    decoration: InputDecoration(labelText: '提出希望日'),
-                    readOnly: true, // 読み取り専用にする
+                // 会社名
+                TextField(
+                  controller: companyController,
+                  decoration: InputDecoration(
+                    labelText: '会社名',
+                    border: OutlineInputBorder(), // 枠線を追加
                   ),
                 ),
-                IconButton(
-                  icon: Icon(Icons.calendar_today),
-                  onPressed: () => _selectDate(context),
+                SizedBox(height: 8.0),
+                // 担当名
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    labelText: '担当名',
+                    border: OutlineInputBorder(), // 枠線を追加
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                // 提出希望日
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: dueDateController,
+                        decoration: InputDecoration(
+                          labelText: '提出希望日',
+                          border: OutlineInputBorder(), // 枠線を追加
+                        ),
+                        readOnly: true, // 読み取り専用にする
+                      ),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.calendar_today),
+                      onPressed: () => _selectDate(context),
+                    ),
+                  ],
                 ),
               ],
             ),

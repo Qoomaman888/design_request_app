@@ -37,13 +37,25 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
   };
 
   void _setImageSelection(String questionKey, String imageKey) {
+    // 'no_image.png' の場合は特別な処理を行う
+    if (imageKey == 'no_image.png') {
+      setState(() {
+        _selectedImages[questionKey] = 'assets/no_image.png';
+        _selectedImageKeys[questionKey] = 'no_image';
+      });
+      return;
+    }
+
     final imagePath = _getImagePath(
         questionKey, int.parse(imageKey.replaceAll(RegExp(r'[^\d]'), '')));
+
     setState(() {
       _selectedImages[questionKey] = 'assets/$imagePath';
       _selectedImageKeys[questionKey] = imagePath.replaceFirst('.png', '');
     });
   }
+
+
 
   String _getImagePath(String questionKey, int index) {
     String? equipmentType = _questionToEquipmentMapping[questionKey];
@@ -85,6 +97,8 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
 
     final String path =
         '${typeAbbreviation}_${resetQuestionNumber}_${index}.png';
+  // 生成された画像パスを出力
+  print('Generated imagePath for $questionKey: $path');
 
     return path; // 'assets/' を削除
   }
@@ -97,14 +111,19 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
         categoryColor = Color(0xFF00A0E4); // Vivid Cerulean Blue
         break;
       case '換気設備':
-        categoryColor = Color(0xFF008080); // Teal
+        categoryColor = Color(0xFF5CA4D6); // 濃いライトスカイブルー
         break;
       case '衛生設備':
-        categoryColor = Color(0xFF32CD32); // Lime Green
+        categoryColor = Color(0xFF7ECB78); // 濃いペールグリーン
         break;
-      // 他のカテゴリーの色設定も同様に追加
+      case '電気設備':
+        categoryColor = Color(0xFFD4A300); // 濃いゴールド
+        break;
+      case '消火設備':
+        categoryColor = Color(0xFFD43700); // 濃いオレンジレッド
+        break;
       default:
-        categoryColor = Colors.grey; // デフォルト色
+        categoryColor = Color(0xFF2A9D2A); // 濃いライムグリーン
     }
 
     final itemCount =
@@ -114,7 +133,7 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
       margin: EdgeInsets.all(8.0),
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: Colors.white, // 白い背景
+        color: Color(0xFFEAFAEA),
         border: Border.all(color: categoryColor), // カテゴリーの色に合わせた枠
         borderRadius: BorderRadius.circular(10),
       ),
@@ -134,6 +153,9 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
               itemBuilder: (context, index) {
                 final imageKey = index == 0 ? 'no_image.png' : 'image$index';
                 final imagePath = _getImagePath(questionKey, index);
+                    // 画像パスを出力
+    print('ListView Builder imagePath for $questionKey: $imagePath');
+
 
                 return GestureDetector(
                   onTap: () {
@@ -145,14 +167,17 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
                   },
                   child: Container(
                     margin: EdgeInsets.all(8.0),
+// 画像のボーダーカラー設定箇所
+// ListView.builder 内
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: _selectedImageKeys[questionKey] == imageKey
-                            ? Colors.blue // 選択された画像のボーダーカラー
-                            : Colors.grey, // 選択されていない画像のボーダーカラー
-                        width: 2,
+                        color: _selectedImageKeys[questionKey] == imagePath.replaceFirst('.png', '')
+                            ? Color(0xFF00A0E4) // Vivid Cerulean Blue // 選択された画像
+                            : Colors.grey, // 選択されていない画像
+                        width: 3,
                       ),
                     ),
+
                     child: Image.asset(imagePath),
                   ),
                 );

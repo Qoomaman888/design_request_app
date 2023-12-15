@@ -47,32 +47,40 @@ class _RequestPageState extends State<RequestPage> {
       _answers[key] = value;
     });
   }
-  
-Widget _buildSection(String title, List<String> questions) {
-  Color categoryColor; // カテゴリーごとの色設定
-  switch (title) {
-    case '空調設備':
-      categoryColor = Color(0xFF00A0E4); // Vivid Cerulean Blue
-      break;
-    case '換気設備':
-      categoryColor = Color(0xFF008080); // Teal
-      break;
-    // 他のカテゴリーに対する色設定
-    default:
-      categoryColor = Color(0xFF32CD32); // Lime Green for other categories
-  }
+
+  Widget _buildSection(String title, List<String> questions) {
+    Color categoryColor; // カテゴリーごとの色設定
+    switch (title) {
+      case '空調設備':
+        categoryColor = Color(0xFF00A0E4); // Vivid Cerulean Blue
+        break;
+      case '換気設備':
+        categoryColor = Color(0xFF5CA4D6); // 濃いライトスカイブルー
+        break;
+      case '衛生設備':
+        categoryColor = Color(0xFF7ECB78); // 濃いペールグリーン
+        break;
+      case '電気設備':
+        categoryColor = Color(0xFFD4A300); // 濃いゴールド
+        break;
+      case '消火設備':
+        categoryColor = Color(0xFFD43700); // 濃いオレンジレッド
+        break;
+      default:
+        categoryColor = Color(0xFF2A9D2A); // 濃いライムグリーン
+    }
 
   final questionWidgets = <Widget>[];
 
   // タイトルを含む全体の枠を作成
-  questionWidgets.add(Container(
-    margin: const EdgeInsets.all(8.0),
-    padding: const EdgeInsets.all(8.0),
-    decoration: BoxDecoration(
-      color: Colors.white, // 背景色を白に設定
-      border: Border.all(color: categoryColor),
-      borderRadius: BorderRadius.circular(10),
-    ),
+    questionWidgets.add(Container(
+      margin: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: Color(0xFFEAFAEA), // 背景色を指定された色に変更
+        border: Border.all(color: categoryColor),
+        borderRadius: BorderRadius.circular(10),
+      ),
     child: Column(
       children: [
         Text(

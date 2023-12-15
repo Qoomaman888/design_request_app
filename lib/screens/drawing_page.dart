@@ -51,8 +51,7 @@ class _DrawingPageState extends State<DrawingPage> {
                 decoration: BoxDecoration(
                   border:
                       Border(right: BorderSide(width: 1, color: Colors.grey)),
-                  color: Color(0xFF32CD32).withOpacity(
-                      0.1), // Lime Green light color for the background // 背景色を追加
+                  color: Color(0xFFEAFAEA), // Lime Green light color for the background // 背景色を追加
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
