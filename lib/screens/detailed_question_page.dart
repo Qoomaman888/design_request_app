@@ -55,8 +55,6 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
     });
   }
 
-
-
   String _getImagePath(String questionKey, int index) {
     String? equipmentType = _questionToEquipmentMapping[questionKey];
     if (equipmentType == null) {
@@ -97,8 +95,8 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
 
     final String path =
         '${typeAbbreviation}_${resetQuestionNumber}_${index}.png';
-  // 生成された画像パスを出力
-  print('Generated imagePath for $questionKey: $path');
+    // 生成された画像パスを出力
+    print('Generated imagePath for $questionKey: $path');
 
     return path; // 'assets/' を削除
   }
@@ -153,9 +151,9 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
               itemBuilder: (context, index) {
                 final imageKey = index == 0 ? 'no_image.png' : 'image$index';
                 final imagePath = _getImagePath(questionKey, index);
-                    // 画像パスを出力
-    print('ListView Builder imagePath for $questionKey: $imagePath');
-
+                // 画像パスを出力
+                print(
+                    'ListView Builder imagePath for $questionKey: $imagePath');
 
                 return GestureDetector(
                   onTap: () {
@@ -171,8 +169,10 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
 // ListView.builder 内
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: _selectedImageKeys[questionKey] == imagePath.replaceFirst('.png', '')
-                            ? Color(0xFF00A0E4) // Vivid Cerulean Blue // 選択された画像
+                        color: _selectedImageKeys[questionKey] ==
+                                imagePath.replaceFirst('.png', '')
+                            ? Color(
+                                0xFF00A0E4) // Vivid Cerulean Blue // 選択された画像
                             : Colors.grey, // 選択されていない画像
                         width: 3,
                       ),
@@ -184,14 +184,17 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
               },
             ),
           ),
-          // ここに追加質問や入力フォームを追加
-          _buildQuantitySelector(questionKey), // 例: 数量セレクター
+          _selectedImageKeys[questionKey] != null
+              ? _buildQuantitySelector(questionKey)
+              : SizedBox.shrink(),
         ],
       ),
     );
   }
 
   Widget _buildQuantitySelector(String questionKey) {
+    print('Called _buildQuantitySelector with questionKey: $questionKey');
+
     String? selectedImageKey = _selectedImageKeys[questionKey];
     print(
         'Building QuantitySelector for $questionKey with key $selectedImageKey'); // デバッグ出力
@@ -227,6 +230,7 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final keysList =
         widget.answers.keys.where((key) => widget.answers[key] == 'Y').toList();
     final Map<String, List<String>> groupedQuestions = {
@@ -272,8 +276,6 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
                         .map((questionKey) => Column(
                               children: [
                                 buildQuestionSection(questionKey), // 既存の質問セクション
-                                _buildQuantitySelector(
-                                    questionKey), // QuantitySelectorを追加
                                 // 他の入力フォームやUI要素をここに追加
                               ],
                             ))
