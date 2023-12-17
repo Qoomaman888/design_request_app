@@ -63,19 +63,19 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
     String typeAbbreviation;
     switch (equipmentType) {
       case '空調設備':
-        typeAbbreviation = 'AC';
+        typeAbbreviation = 'ac';
         break;
       case '換気設備':
-        typeAbbreviation = 'Ven';
+        typeAbbreviation = 'ven';
         break;
       case '衛生設備':
-        typeAbbreviation = 'San';
+        typeAbbreviation = 'san';
         break;
       case '電気設備':
-        typeAbbreviation = 'Ele';
+        typeAbbreviation = 'ele';
         break;
       case '消火設備':
-        typeAbbreviation = 'Fire';
+        typeAbbreviation = 'fire';
         break;
       default:
         return 'assets/no_image.png';
@@ -204,10 +204,10 @@ class _DetailedQuestionPageState extends State<DetailedQuestionPage> {
 
     String title;
     switch (selectedImageKey) {
-      case 'AC_1_1':
+      case 'ac_1_1':
         title = '空調設備の台数';
         break;
-      case 'Ven_1_1':
+      case 'ven_1_1':
         title = '換気設備の台数';
         break;
       // 他の画像キーに対するタイトルをここに追加

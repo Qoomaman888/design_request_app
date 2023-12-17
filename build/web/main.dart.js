@@ -42849,15 +42849,15 @@ return}s=A.fP("[^\\d]",!0,!1)
 r.a6(new A.add(r,a,r.JU(a,A.jE(A.VU(b,s,""),null))))},
 JU(a,b){var s,r,q,p,o="assets/no_image.png",n=this.r,m=n.h(0,a)
 if(m==null)return o
-switch(m){case"\u7a7a\u8abf\u8a2d\u5099":s="AC"
+switch(m){case"\u7a7a\u8abf\u8a2d\u5099":s="ac"
 break
-case"\u63db\u6c17\u8a2d\u5099":s="Ven"
+case"\u63db\u6c17\u8a2d\u5099":s="ven"
 break
-case"\u885b\u751f\u8a2d\u5099":s="San"
+case"\u885b\u751f\u8a2d\u5099":s="san"
 break
-case"\u96fb\u6c17\u8a2d\u5099":s="Ele"
+case"\u96fb\u6c17\u8a2d\u5099":s="ele"
 break
-case"\u6d88\u706b\u8a2d\u5099":s="Fire"
+case"\u6d88\u706b\u8a2d\u5099":s="fire"
 break
 default:return o}if(b===0)return"no_image.png"
 r=A.fP("[^\\d]",!0,!1)
@@ -42892,9 +42892,9 @@ A.iu("Called _buildQuantitySelector with questionKey: "+a)
 s=this.e.h(0,a)
 A.iu("Building QuantitySelector for "+a+" with key "+A.j(s))
 if(s==null)return A.a87()
-switch(s){case"AC_1_1":r="\u7a7a\u8abf\u8a2d\u5099\u306e\u53f0\u6570"
+switch(s){case"ac_1_1":r="\u7a7a\u8abf\u8a2d\u5099\u306e\u53f0\u6570"
 break
-case"Ven_1_1":r="\u63db\u6c17\u8a2d\u5099\u306e\u53f0\u6570"
+case"ven_1_1":r="\u63db\u6c17\u8a2d\u5099\u306e\u53f0\u6570"
 break
 default:return A.a87()}return A.dS(A.a([new A.ya(r,new A.ada(),null)],t.p),B.P,B.A,B.L)},
 I(a){var s,r,q,p,o,n,m=this,l=null,k=m.a.c,j=A.k(k).i("aK<1>"),i=j.i("aN<l.E>"),h=A.a5(new A.aN(new A.aK(k,j),new A.adi(m),i),!0,i.i("l.E"))
